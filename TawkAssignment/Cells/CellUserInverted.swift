@@ -37,8 +37,11 @@ extension CellUserInverted: TableViewCellProtocol {
             lblName.text = data.object.login
             lblBlog.text = data.object.gistsURL
             if let url = data.object.avatarURL {
-                self.imgProfileIcon.loadcacheImageUsingCacheWithURLString(url, placeHolder: UIImage(named: "placeholder"))
-                imgProfileIcon.inverseImage()
+                self.imgProfileIcon.loadcacheImageUsingCacheWithURLString(url, placeHolder: UIImage(named: "placeholder"), inverse: true)
+//                DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+//                    self.imgProfileIcon.inverseImage()
+//                })
+               
             }
             UserListRepository().isViewed(id: data.object.id!){ success, err in
                 if success == true {

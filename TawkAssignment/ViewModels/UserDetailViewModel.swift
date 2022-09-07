@@ -34,6 +34,7 @@ class UserDetailViewModel: ObservableObject{
                 if error == nil, result != nil {
                     self.view.userObject = result!
                 }
+                self.userProfileRepository.update(object: result!)
             }
         } else {
             let data = userProfileRepository.get(id: id){ object,err in
@@ -50,7 +51,13 @@ class UserDetailViewModel: ObservableObject{
     }
     
     func addNotesTo(id: Int, text: String) {
-        notesRepository.save(id: id, note: text){_,_ in }
+        notesRepository.save(id: id, note: text){success, error in
+            if success {
+                self.view.showAlertWith(title: AppName, message: "Note saved")
+            } else if error != nil{
+                self.view.showAlertWith(title: AppName, message: "Note not saved")
+            }
+        }
     }
     
 }

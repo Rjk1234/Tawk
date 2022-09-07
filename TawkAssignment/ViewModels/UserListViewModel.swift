@@ -53,7 +53,7 @@ class UserListViewModel {
                     self.filteredUserList += resultList!
                     print(self.filteredUserList)
                     self.userListRepository.updateRecord(data: resultList!)
-                    self.webService.getDetailFromServer(List: resultList!)
+//                    self.webService.getDetailFromServer(List: resultList!)
                 } else {
                     self.view.showAlertWith(title: AppName, message: err?.localizedDescription ?? ErrorAlert)
                 }
@@ -81,16 +81,15 @@ class UserListViewModel {
         self.items.removeAll()
         for i in 0..<data.count{
              notesRepository.readAvailable(id: data[i].id!){success, note in
-                if success == true {
+                 if success == true{
                     self.items.append(CellUserNoteModel(object: data[i]))
-                
-              }else{
+              }else
                 if i > 0 && i%4 == 3 {
                     self.items.append(CellUserInvertedModel(object: data[i]))
                 }else{
                     self.items.append(CellUserNormalModel(object: data[i]))
                 }
-            }
+            
         }
         }
         print(data.count)
@@ -112,7 +111,19 @@ class UserListViewModel {
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "VCUserDetail") as! VCUserDetail
         vc.userName = passedName
         vc.userId = passedId
-        view.navigationController?.pushViewController(vc, animated: true)
+        if !Utility.isInternetAvailable(){
+            UserProfileRepository().get(id: passedId!){object, err in
+                if err != nil, object == nil {
+                    self.view.showAlertWith(title: AppName, message: "No Profile data available offline")
+                    return
+                }else{
+                    self.view.navigationController?.pushViewController(vc, animated: true)
+                }
+            }
+        } else{
+            view.navigationController?.pushViewController(vc, animated: true)
+        }
+        
     }
     
     enum Output {
@@ -127,9 +138,16 @@ class UserListViewModel {
             return
         }
         
-        filteredUserList = allUserList.filter({ obj -> Bool in
+        let arr1 = allUserList.filter({ obj -> Bool in
             return (obj.login?.lowercased().contains(searchText.lowercased()) ?? false)
         })
+        let arr2 = allUserList.filter ({ obj -> Bool in
+           let note = self.notesRepository.read(id: obj.id!)
+            return (note != nil && (note?.contains(searchText) ?? false))
+        })
+        filteredUserList = arr1
+        filteredUserList += arr2
+        
         print(filteredUserList.count)
     }
 }

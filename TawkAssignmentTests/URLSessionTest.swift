@@ -59,13 +59,6 @@ class URLSessionTest: XCTestCase {
         self.waitForExpectations(timeout: 20.0, handler: nil)
     }
 
-    func testValidSession(){
-        
-    }
-    
-    func testValidURL(){
-        
-    }
     
 }
 

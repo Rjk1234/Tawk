@@ -44,7 +44,7 @@ extension UIViewController {
 
 extension UIImageView {
     
-    func loadcacheImageUsingCacheWithURLString(_ URLString: String, placeHolder: UIImage?) {
+    func loadcacheImageUsingCacheWithURLString(_ URLString: String, placeHolder: UIImage?, inverse: Bool = false) {
         guard let imageUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent(URLString).appendingPathExtension("png") else {
             return
         }
@@ -52,6 +52,9 @@ extension UIImageView {
         if FileManager.default.fileExists(atPath: imageUrl.path) {
             if let imageData = try? Data(contentsOf: imageUrl), let image = UIImage(data: imageData) {
                 self.image = image
+                if inverse{
+                self.inverseImage()
+                }
             }
         }
         if let url = URL(string: URLString) {
@@ -61,6 +64,9 @@ extension UIImageView {
                     print("ERROR LOADING IMAGES FROM URL: \(String(describing: error))")
                     DispatchQueue.main.async {
                         self.image = placeHolder
+                        if inverse{
+                        self.inverseImage()
+                        }
                     }
                     return
                 }
@@ -71,6 +77,9 @@ extension UIImageView {
                             try data.write(to: imageUrl)
                             }catch{}
                             self.image = downloadedImage
+                            if inverse{
+                            self.inverseImage()
+                            }
                         }
                     }
                 }

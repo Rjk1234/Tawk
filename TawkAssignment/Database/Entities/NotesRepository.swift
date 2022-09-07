@@ -46,5 +46,22 @@ class NotesRepository: NotesRepositoryProtocol {
             completion(false, nil)
         }
     }
+    func read(id: Int) -> String? {
+        let fetchReq: NSFetchRequest<Notes> = Notes.fetchRequest()
+        fetchReq.predicate = NSPredicate(format: "userId LIKE %@", "\(id)")
+        do {
+            let entity = try CoreDataStack.sharedInstance.readManagedObjectContext.fetch(fetchReq)
+            if entity.isEmpty{
+                return nil
+            }
+            if let noteText = entity.first?.noteText as? String {
+                return noteText
+            }
+        }catch{
+            print(error.localizedDescription)
+           return nil
+        }
+        return nil
+    }
     
 }

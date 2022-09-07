@@ -127,15 +127,16 @@ class UserProfileRepository: UserProfileRepositryProtocol{
     
     func get(id: Int, completion: @escaping (UserModel?,CoreRepositoryError?)->Void) {
         let fetchReq: NSFetchRequest<UserProfile> = UserProfile.fetchRequest()
-        fetchReq.predicate = NSPredicate(format: "id LIKE %@", "\(id)")
+        fetchReq.predicate = NSPredicate(format: "id = %@", "\(id)")
         do {
             let entity = try CoreDataStack.sharedInstance.readManagedObjectContext.fetch(fetchReq)
             if entity.isEmpty{
                 completion(nil, .NotFound)
-            }
+            }else{
             let object = createUserProfile(entity: entity[0])
             
             completion(object, nil)
+            }
         }catch{
             print(error.localizedDescription)
             completion(nil, .NotFound)

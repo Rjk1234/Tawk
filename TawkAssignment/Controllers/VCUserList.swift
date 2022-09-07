@@ -11,6 +11,7 @@ class VCUserList: UIViewController {
     
     @IBOutlet weak var tblUserList: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var lblInternet: UILabel!
     var viewModel: UserListViewModel!
     var isLoaded:Bool = false
     override func viewDidLoad() {
@@ -31,15 +32,17 @@ class VCUserList: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewModel.refreshList()
+        
     }
     
     @objc func onDidReceiveConnection(_ notification:Notification) {
         // Do stuff
         if Utility.isInternetAvailable(){
+            lblInternet.isHidden = true
             if self.isLoaded {return}
             viewModel.getAllUsers(page: viewModel.pageNumber)
          }else{
-             print("network is not available")
+             lblInternet.isHidden = false
          }
     }
 }

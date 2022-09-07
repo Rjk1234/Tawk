@@ -23,7 +23,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(onDidReceiveConnection(_:)), name: .didReceiveConnection, object: nil)
         handle.start()
         
-        
         return true
     }
 

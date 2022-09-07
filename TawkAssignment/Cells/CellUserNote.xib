@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="CellUserNote" rowHeight="94" id="KGk-i7-Jjw" customClass="CellUserNote" customModule="TawkAssignment" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="403" height="94"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="403" height="94"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ljI-df-knJ">
+                        <rect key="frame" x="5" y="5" width="393" height="80"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0w5-zy-u3t">
+                                <rect key="frame" x="5" y="10" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="0w5-zy-u3t" secondAttribute="height" multiplier="1:1" id="08q-gH-3Kq"/>
+                                    <constraint firstAttribute="height" constant="60" id="4Xg-7Z-Rk6"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sci-9J-t92">
+                                <rect key="frame" x="70" y="10" width="293" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="lwz-Gh-ps3"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="11"/>
+                                <color key="textColor" name="TawkColorLabel"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hFc-Yq-XSO">
+                                <rect key="frame" x="70" y="36" width="318" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="1cV-HX-I7A"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="11"/>
+                                <color key="textColor" name="TawkColorLabel"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="doc.text" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="pHi-1i-7fR">
+                                <rect key="frame" x="368" y="13" width="15" height="15"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="15" id="fNp-pP-lby"/>
+                                    <constraint firstAttribute="width" secondItem="pHi-1i-7fR" secondAttribute="height" multiplier="1:1" id="rqG-oX-cAD"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="0w5-zy-u3t" secondAttribute="bottom" constant="10" id="07B-7p-Ie4"/>
+                            <constraint firstItem="sci-9J-t92" firstAttribute="leading" secondItem="0w5-zy-u3t" secondAttribute="trailing" constant="5" id="5nw-aV-2R5"/>
+                            <constraint firstItem="sci-9J-t92" firstAttribute="top" secondItem="ljI-df-knJ" secondAttribute="top" constant="10" id="63N-em-Le8"/>
+                            <constraint firstAttribute="trailing" secondItem="hFc-Yq-XSO" secondAttribute="trailing" constant="5" id="9Ut-OM-GDf"/>
+                            <constraint firstItem="0w5-zy-u3t" firstAttribute="top" secondItem="ljI-df-knJ" secondAttribute="top" constant="10" id="AO4-Yt-mfw"/>
+                            <constraint firstItem="0w5-zy-u3t" firstAttribute="leading" secondItem="ljI-df-knJ" secondAttribute="leading" constant="5" id="Ceo-al-e6O"/>
+                            <constraint firstItem="pHi-1i-7fR" firstAttribute="centerY" secondItem="sci-9J-t92" secondAttribute="centerY" id="Hze-gp-OIe"/>
+                            <constraint firstItem="hFc-Yq-XSO" firstAttribute="leading" secondItem="0w5-zy-u3t" secondAttribute="trailing" constant="5" id="LzF-oQ-v8C"/>
+                            <constraint firstAttribute="trailing" secondItem="pHi-1i-7fR" secondAttribute="trailing" constant="10" id="TrE-Ev-Dta"/>
+                            <constraint firstItem="hFc-Yq-XSO" firstAttribute="top" secondItem="sci-9J-t92" secondAttribute="bottom" constant="5" id="i8w-ni-h49"/>
+                            <constraint firstItem="pHi-1i-7fR" firstAttribute="leading" secondItem="sci-9J-t92" secondAttribute="trailing" constant="5" id="jG4-Fg-TVN"/>
+                            <constraint firstItem="0w5-zy-u3t" firstAttribute="centerY" secondItem="ljI-df-knJ" secondAttribute="centerY" id="sDT-ZH-zYh"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="ljI-df-knJ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="Ppz-O4-bmP"/>
+                    <constraint firstAttribute="bottom" secondItem="ljI-df-knJ" secondAttribute="bottom" constant="5" id="XMX-QZ-I4u"/>
+                    <constraint firstAttribute="trailing" secondItem="ljI-df-knJ" secondAttribute="trailing" constant="5" id="aVb-ug-CFI"/>
+                    <constraint firstItem="ljI-df-knJ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="q5l-7S-SXa"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="imgProfileIcon" destination="0w5-zy-u3t" id="Q7A-nG-pk5"/>
+                <outlet property="lblBlog" destination="hFc-Yq-XSO" id="Co7-KQ-lKB"/>
+                <outlet property="lblName" destination="sci-9J-t92" id="uc0-ou-fU8"/>
+                <outlet property="viewCardBG" destination="ljI-df-knJ" id="6eP-r3-YqY"/>
+            </connections>
+            <point key="canvasLocation" x="192.0289855072464" y="38.169642857142854"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="doc.text" catalog="system" width="115" height="128"/>
+        <namedColor name="TawkColorLabel">
+            <color red="0.14499999582767487" green="0.14499999582767487" blue="0.14499999582767487" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

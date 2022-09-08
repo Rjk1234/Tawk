@@ -50,7 +50,6 @@ class TestUserListViewModel: XCTestCase {
         // output should be count 3 with no duplicate
         XCTAssertEqual(VMUnderTest.allUserList.count, 3)
     }
-    
 
     
 

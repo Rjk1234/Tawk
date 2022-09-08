@@ -30,11 +30,15 @@ class UserDetailViewModel: ObservableObject{
         if Utility.isInternetAvailable() {
             Utility.showActivityIndicator(In: self.view)
             webService.getUserProfileWith(Name: name) { result, error in
-                Utility.hideActivityIndicator()
+                DispatchQueue.main.async {
+                    Utility.hideActivityIndicator()
+                }
+                
                 if error == nil, result != nil {
                     self.view.userObject = result!
+                    self.userProfileRepository.update(object: result!)
                 }
-                self.userProfileRepository.update(object: result!)
+                
             }
         } else {
             let data = userProfileRepository.get(id: id){ object,err in

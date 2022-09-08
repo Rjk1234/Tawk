@@ -7,7 +7,7 @@
 import Foundation
 
 // MARK: - UserListModelElement
-struct UserListElement: Codable {
+struct UserListElement: Codable , Equatable{
     let login: String?
     let id: Int?
     let nodeID: String?

@@ -40,7 +40,7 @@ class ApiClient {
         self.session = session
     }
     
-    func load<T>(
+    func fetch<T>(
         resource: Resource<T>,
         completion: @escaping (Result<T, NetworkError>)->Void
     ){
@@ -73,21 +73,21 @@ class ApiClient {
         dataTask?.resume()
     }
     
-    let uploadQueue = DispatchQueue.global(qos: .background)
-    let uploadGroup = DispatchGroup()
+    let downloadQueue = DispatchQueue.global(qos: .background)
+    let downloadGroup = DispatchGroup()
     let uploadSemaphore = DispatchSemaphore(value: 1)
     ///Keeping network call one at a time
-    func loadWithQue<T>(
+    func fetchWithQueue<T>(
         resource: Resource<T>,
         completion: @escaping (Result<T, NetworkError>)->Void
     ){
-        uploadQueue.async(group: uploadGroup) { [weak self] in
+        downloadQueue.async(group: downloadGroup) { [weak self] in
             guard let self = self else { return }
-            self.uploadGroup.enter()
+            self.downloadGroup.enter()
             self.uploadSemaphore.wait()
-            self.load(resource: resource) { result in
+            self.fetch(resource: resource) { result in
                 completion(result)
-                self.uploadGroup.leave()
+                self.downloadGroup.leave()
                 self.uploadSemaphore.signal()
             }
         }

@@ -23,4 +23,5 @@ class MockUserListViewModel: UserListViewModel {
         getUserExpectation?.fulfill()
     }
     
+    
 }

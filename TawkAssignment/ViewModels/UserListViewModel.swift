@@ -38,8 +38,22 @@ class UserListViewModel {
     var isSearchActive: Bool = false
     
     func getAllUsers(page: Int){
+        if self.view.isLoaded == false {
+            self.userListRepository.getAll { arr, err in
+                if err == nil, let list = arr as? [UserListElement]{
+                    self.allUserList.removeAll()
+                    self.filteredUserList.removeAll()
+                    self.view.isLoaded = true
+                    self.allUserList = list
+                    self.filteredUserList = list
+                }
+            }
+        }
+        
         if Utility.isInternetAvailable() {
-            Utility.showActivityIndicator(In: self.view)
+            if pageNumber > 0 {
+                Utility.showActivityIndicator(In: self.view)
+            }
             webService.getAllUsers(page: page) { resultList, err in
                 DispatchQueue.main.async {
                     Utility.hideActivityIndicator()
@@ -49,28 +63,37 @@ class UserListViewModel {
                         self.pageNumber = id
                     }
                     self.view.isLoaded = true
-                    self.allUserList += resultList!
-                    self.filteredUserList += resultList!
-                    print(self.filteredUserList)
+                    if self.allUserList.isEmpty {
+                        self.allUserList = resultList!
+                        self.filteredUserList = resultList!
+                        
+                    }else{
+                        self.mapToRefresh(resultList: resultList!)
+                    }
                     self.userListRepository.updateRecord(data: resultList!)
-//                    self.webService.getDetailFromServer(List: resultList!)
-                } else {
-                    self.view.showAlertWith(title: AppName, message: err?.localizedDescription ?? ErrorAlert)
-                }
-            }
-        } else {
-            //get from coredata
-            self.userListRepository.getAll { arr, err in
-                if err == nil, let list = arr as? [UserListElement]{
-                    self.allUserList.removeAll()
-                    self.filteredUserList.removeAll()
-                    self.allUserList = list
-                    self.filteredUserList = list
                 }
             }
         }
     }
-        
+    
+    func mapToRefresh(resultList: [UserListElement]){
+        for i in 0..<resultList.count {
+            let userId = resultList[i].id
+            if self.allUserList.contains(where: { object in
+                return (object.id == userId)
+            }) {
+                let index = self.allUserList.firstIndex(of: resultList[i])
+                if index != nil {
+                    self.allUserList.remove(at: index!)
+                    self.allUserList.insert(resultList[i], at: index!)
+                }
+            }else{
+                self.allUserList.append(resultList[i])
+            }
+        }
+        self.filteredUserList = self.allUserList
+    }
+
     
     func fetchNextPage(){
         if isSearchActive == true { return }
@@ -98,9 +121,7 @@ class UserListViewModel {
     func refreshList(){
         populateList(data: self.filteredUserList)
     }
-    func refreshOnline(){
-        
-    }
+    
     func getItem(at index: Int) -> TableViewCellModelProtocol {
         return items[index]
     }
@@ -120,7 +141,7 @@ class UserListViewModel {
                     self.view.navigationController?.pushViewController(vc, animated: true)
                 }
             }
-        } else{
+        } else {
             view.navigationController?.pushViewController(vc, animated: true)
         }
         
@@ -138,17 +159,25 @@ class UserListViewModel {
             return
         }
         
-        let arr1 = allUserList.filter({ obj -> Bool in
+        var arr1 = allUserList.filter({ obj -> Bool in
             return (obj.login?.lowercased().contains(searchText.lowercased()) ?? false)
         })
         let arr2 = allUserList.filter ({ obj -> Bool in
-           let note = self.notesRepository.read(id: obj.id!)
+            let note = self.notesRepository.read(id: obj.id!)
             return (note != nil && (note?.contains(searchText) ?? false))
         })
-        filteredUserList = arr1
-        filteredUserList += arr2
-        
-        print(filteredUserList.count)
+        arr1 += arr2
+        filteredUserList = unique(elements: arr1)
+    }
+    
+    func unique(elements: [UserListElement]) -> [UserListElement] {
+        var uniqueElements = [UserListElement]()
+        for element in elements {
+            if !uniqueElements.contains(element){
+                uniqueElements.append(element)
+            }
+        }
+        return uniqueElements
     }
 }
 

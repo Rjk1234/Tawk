@@ -20,7 +20,7 @@ class WebService {
         }
         let url = URL(string: "\(baseUrl)\(userList)\(page)&per_page=\(pageSize)")!
         let resource: Resource<UserListModel> = Resource(url: url, httpMethod: .get)
-        apiClient.loadWithQue(resource: resource) { result in
+        apiClient.fetchWithQueue(resource: resource) { result in
             switch result{
             case .success(let result):
                 print(result.count)
@@ -52,7 +52,7 @@ class WebService {
         let url = URL(string: "\(baseUrl)\(userProfile)\(Name)")!
         print(url)
         let resource: Resource<UserModel> = Resource(url: url, httpMethod: .get)
-        apiClient.loadWithQue(resource: resource) { result in
+        apiClient.fetchWithQueue(resource: resource) { result in
             switch result{
             case .success(let result):
                 print(result)

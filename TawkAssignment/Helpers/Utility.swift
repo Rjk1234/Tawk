@@ -42,6 +42,7 @@ class Utility: NSObject {
     
     class func hideActivityIndicator() {
         activityIndicator?.removeFromSuperview()
+        if effectView == nil{ return }
         effectView.removeFromSuperview()
         blurView?.removeFromSuperview()
         activityIndicator = nil

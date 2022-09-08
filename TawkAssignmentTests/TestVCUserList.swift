@@ -42,6 +42,21 @@ class TestVCUserList: XCTestCase {
         sut.viewModel.getAllUsers(page: 0)
         XCTAssertEqual(sut.viewModel.numberOfItems, 1)
     }
+    func testSearchBarNotSearchWithEmptyString(){
+        sut.viewModel = MockUserListViewModel(webservice: MockWebService(), notesRepository: MockNotesRepository(), userListRepository: MockUserListRepository())
+        sut.viewModel.getAllUsers(page: 0)
+        
+        // get total items in list
+        let totalItem = sut.viewModel.numberOfItems
+        
+        sut.searchBar.text = ""
+        XCTAssertEqual(sut.viewModel.numberOfItems, totalItem)
+        
+        sut.searchBar.text = "   "
+        XCTAssertEqual(sut.viewModel.numberOfItems, totalItem)
+       print( sut.viewModel.numberOfItems )
+    }
+    
     
 }
 class MockWebService: WebService {

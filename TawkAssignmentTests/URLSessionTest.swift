@@ -27,7 +27,7 @@ class URLSessionTest: XCTestCase {
         client.dataTask = MockURLSessionDataTaskWithData()
         let url = URL(string: validAlbumListURL)!
         let resource:Resource<UserModel> = Resource(url: url, httpMethod: .get, body: nil)
-        client.load(resource: resource){result in
+        client.fetch(resource: resource){result in
             switch result{
             case .success(let data):
                 print(data)
@@ -47,7 +47,7 @@ class URLSessionTest: XCTestCase {
         client.dataTask = MockURLSessionDataTask()
         let url = URL(string: validAlbumListURL)!
         let resource:Resource<UserModel> = Resource(url: url, httpMethod: .get, body: nil)
-        client.load(resource: resource){result in
+        client.fetch(resource: resource){result in
             switch result{
             case .success(let data):
                 print(data)

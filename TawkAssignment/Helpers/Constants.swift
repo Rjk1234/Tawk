@@ -10,7 +10,6 @@ import Foundation
 let AppName: String = "TawkAssignment"
 let ErrorAlert: String = "Something went wrong"
 
-
 let baseUrl: String = "https://api.github.com/users"
 let userList: String = "?since="
 let userProfile: String = "/"

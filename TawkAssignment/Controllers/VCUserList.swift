@@ -14,6 +14,7 @@ class VCUserList: UIViewController {
     @IBOutlet weak var lblInternet: UILabel!
     var viewModel: UserListViewModel!
     var isLoaded:Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tblUserList.register(UINib(nibName: "CellUserNormal", bundle: nil), forCellReuseIdentifier: "CellUserNormal")
@@ -21,7 +22,12 @@ class VCUserList: UIViewController {
         tblUserList.register(UINib(nibName: "CellUserNote", bundle: nil), forCellReuseIdentifier: "CellUserNote")
         tblUserList.delegate = self
         tblUserList.dataSource = self
-        viewModel = UserListViewModel(webservice: WebService(), notesRepository: NotesRepository(), userListRepository: UserListRepository())
+        
+        viewModel = UserListViewModel(
+            webservice: WebService(),
+            notesRepository: NotesRepository(),
+            userListRepository: UserListRepository())
+        
         viewModel.view = self
         bindViewModel()
         viewModel.getAllUsers(page: viewModel.pageNumber)
@@ -36,7 +42,7 @@ class VCUserList: UIViewController {
     }
     
     @objc func onDidReceiveConnection(_ notification:Notification) {
-        // Do stuff
+        
         if Utility.isInternetAvailable(){
             lblInternet.isHidden = true
             if self.isLoaded {return}

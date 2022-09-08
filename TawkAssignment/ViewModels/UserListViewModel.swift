@@ -117,7 +117,7 @@ class UserListViewModel {
                 }
             }
         }
-        print(data.count)
+        
         output?(.reloadData)
     }
     func refreshList(){

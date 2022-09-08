@@ -35,7 +35,13 @@ class VCUserDetail: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        viewModel = UserDetailViewModel(webservice: WebService(), notesRepository: NotesRepository(), userListRepository: UserListRepository(), userProfileRepository: UserProfileRepository())
+        
+        viewModel = UserDetailViewModel(
+            webservice: WebService(),
+            notesRepository: NotesRepository(),
+            userListRepository: UserListRepository(),
+            userProfileRepository: UserProfileRepository())
+        
         viewModel.view = self
         guard let userName = userName, let userId = userId else {return}
         viewModel.getDetailBy(id: userId, name: userName)

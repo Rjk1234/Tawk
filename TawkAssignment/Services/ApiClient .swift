@@ -57,11 +57,9 @@ class ApiClient {
                 completion(.failure(.decodeError))
                 return
             }
-            print(String(data: data, encoding: .utf8)!)
             
             let result = try? JSONDecoder().decode(T.self, from: data)
             if let result = result {
-                print(result)
                 DispatchQueue.main.async {
                     completion(.success(result))
                 }

@@ -11,6 +11,7 @@ import XCTest
 class TestUserListViewModel: XCTestCase {
     var sut: VCUserList!
     var VMUnderTest : UserListViewModel!
+    
     override func setUpWithError() throws {
         sut = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "VCUserList") as! VCUserList
         _ = sut.view

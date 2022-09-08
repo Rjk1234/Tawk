@@ -23,7 +23,6 @@ class WebService {
         apiClient.fetchWithQueue(resource: resource) { result in
             switch result{
             case .success(let result):
-                print(result.count)
 //                DatabaseService().clearData()
                 completion(result,nil)
             case .failure(let error):
@@ -50,12 +49,12 @@ class WebService {
         completion: @escaping (UserModel?, Error?) -> Void
     ) -> Void{
         let url = URL(string: "\(baseUrl)\(userProfile)\(Name)")!
-        print(url)
+        
         let resource: Resource<UserModel> = Resource(url: url, httpMethod: .get)
         apiClient.fetchWithQueue(resource: resource) { result in
             switch result{
             case .success(let result):
-                print(result)
+                
                 completion(result, nil)
             case .failure(let error):
                 print(error)

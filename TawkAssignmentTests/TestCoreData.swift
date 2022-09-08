@@ -26,12 +26,12 @@ class TestCoreData: XCTestCase {
         XCTAssertNotNil(persistantContainer)
     }
     
-    func testReadContext(){
+    func testReadContextCanInitialize(){
         let context = coreDataStack.readManagedObjectContext
         XCTAssertNotNil(context)
     }
     
-    func testWriteContext(){
+    func testWriteContextCanInitialize(){
         let context = coreDataStack.writeManagedObjectContext
         XCTAssertNotNil(context)
     }

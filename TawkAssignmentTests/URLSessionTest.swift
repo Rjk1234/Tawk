@@ -11,7 +11,7 @@ import XCTest
 class URLSessionTest: XCTestCase {
 
     let invalidURL:String = ""
-    let validAlbumListURL:String = "http://www.asmtechnology.com/apress2017/albumlist.json"
+    let validURL:String = "http://www.asmtechnology.com/apress2017/albumlist.json"
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
@@ -20,12 +20,12 @@ class URLSessionTest: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testUserModelResponse() {
-        let expectation = self.expectation(description: "Expected failure block to be called")
+    func testGetUserResponseSuccessfully() {
+        let expectation = self.expectation(description: "Expected Success block to be called")
         let client = ApiClient()
         client.session = MockURLSessionWithData()
         client.dataTask = MockURLSessionDataTaskWithData()
-        let url = URL(string: validAlbumListURL)!
+        let url = URL(string: validURL)!
         let resource:Resource<UserModel> = Resource(url: url, httpMethod: .get, body: nil)
         client.fetch(resource: resource){result in
             switch result{
@@ -40,12 +40,12 @@ class URLSessionTest: XCTestCase {
     }
     
 
-    func testURLSession() {
-        let expectation = self.expectation(description: "Expected failure block")
+    func testURLSessionShouldThrowError() {
+        let expectation = self.expectation(description: "Expected failure block to be called")
         let client = ApiClient()
         client.session = MockURLSession()
         client.dataTask = MockURLSessionDataTask()
-        let url = URL(string: validAlbumListURL)!
+        let url = URL(string: validURL)!
         let resource:Resource<UserModel> = Resource(url: url, httpMethod: .get, body: nil)
         client.fetch(resource: resource){result in
             switch result{

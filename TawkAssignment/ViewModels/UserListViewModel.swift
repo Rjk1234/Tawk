@@ -16,7 +16,11 @@ class UserListViewModel {
     var notesRepository: NotesRepository!
     var userListRepository: UserListRepository!
     
-    init(webservice:WebService, notesRepository: NotesRepository, userListRepository: UserListRepository){
+    init(
+        webservice:WebService,
+        notesRepository: NotesRepository,
+        userListRepository: UserListRepository
+    ){
         self.webService = webservice
         self.notesRepository = notesRepository
         self.userListRepository = userListRepository
@@ -103,17 +107,15 @@ class UserListViewModel {
     func populateList(data: [UserListElement]) {
         self.items.removeAll()
         for i in 0..<data.count{
-             notesRepository.readAvailable(id: data[i].id!){success, note in
-                 if success == true{
+            notesRepository.readAvailable(id: data[i].id!){success, note in
+                if success == true{
                     self.items.append(CellUserNoteModel(object: data[i]))
-              }else
-                if i > 0 && i%4 == 3 {
+                }else if i > 0 && i%4 == 3 {
                     self.items.append(CellUserInvertedModel(object: data[i]))
                 }else{
                     self.items.append(CellUserNormalModel(object: data[i]))
                 }
-            
-        }
+            }
         }
         print(data.count)
         output?(.reloadData)

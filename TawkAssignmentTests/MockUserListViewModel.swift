@@ -21,6 +21,7 @@ class MockUserListViewModel: UserListViewModel {
     override func getAllUsers(page: Int) {
         self.items.append(CellUserNormalModel(object: dataMockUserElement))
         getUserExpectation?.fulfill()
+        
     }
     
     

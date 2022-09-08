@@ -16,7 +16,12 @@ class UserDetailViewModel: ObservableObject{
     var userListRepository: UserListRepository!
     var userProfileRepository: UserProfileRepository!
     
-    init(webservice:WebService, notesRepository: NotesRepository, userListRepository: UserListRepository, userProfileRepository: UserProfileRepository){
+    init(
+        webservice:WebService,
+        notesRepository: NotesRepository,
+        userListRepository: UserListRepository,
+        userProfileRepository: UserProfileRepository
+    ){
         self.webService = webservice
         self.notesRepository = notesRepository
         self.userListRepository = userListRepository
@@ -41,7 +46,7 @@ class UserDetailViewModel: ObservableObject{
                 
             }
         } else {
-            let data = userProfileRepository.get(id: id){ object,err in
+            userProfileRepository.get(id: id){ object,err in
                 if err == nil, object != nil {
                     self.view.userObject = object!
                 }

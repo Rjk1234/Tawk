@@ -56,7 +56,13 @@ class TestVCUserList: XCTestCase {
         XCTAssertEqual(sut.viewModel.numberOfItems, totalItem)
        print( sut.viewModel.numberOfItems )
     }
-    
+    func testGetUserListFromCoreDataInCaseNoInternet(){
+        sut.viewModel = MockUserListViewModel(webservice: MockWebService(), notesRepository: MockNotesRepository(), userListRepository: MockUserListRepository())
+        sut.viewModel = UserListViewModel(webservice: MockWebService(), notesRepository: MockNotesRepository(), userListRepository: MockUserListRepository())
+        sut.viewModel.view = sut
+        sut.viewModel.getAllUsers(page: 0)
+        print(sut.viewModel.numberOfItems)
+    }
     
 }
 class MockWebService: WebService {
@@ -66,5 +72,17 @@ class MockNotesRepository: NotesRepository{
     
 }
 class MockUserListRepository: UserListRepository{
-    
+    override func getAll(completion: @escaping ([UserListElement]?, Error?) -> Void) {
+        completion([dataMockUserElement],nil)
+    }
+}
+class MockUtilityWihNoInternet: Utility {
+    override class func isInternetAvailable() -> Bool {
+        return false
+    }
+}
+class MockUtilityWihInternet: Utility {
+    override class func isInternetAvailable() -> Bool {
+        return true
+    }
 }

@@ -7,8 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		25984E8228C88E8E0085C91A /* TestUserListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25984E8128C88E8E0085C91A /* TestUserListModel.swift */; };
-		25984E8428C893550085C91A /* TestUserProfileModdel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25984E8328C893550085C91A /* TestUserProfileModdel.swift */; };
+		2562CAE028C9C855000A5471 /* TestUserListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2562CADF28C9C855000A5471 /* TestUserListViewModel.swift */; };
 		25984E8628C8A4DD0085C91A /* TestCoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25984E8528C8A4DD0085C91A /* TestCoreData.swift */; };
 		25A0FF7328C4AA6100C91DA0 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A0FF7228C4AA6100C91DA0 /* CoreDataStack.swift */; };
 		25A0FF7E28C4CE1400C91DA0 /* UserDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A0FF7D28C4CE1400C91DA0 /* UserDetailViewModel.swift */; };
@@ -70,8 +69,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		25984E8128C88E8E0085C91A /* TestUserListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUserListModel.swift; sourceTree = "<group>"; };
-		25984E8328C893550085C91A /* TestUserProfileModdel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUserProfileModdel.swift; sourceTree = "<group>"; };
+		2562CADF28C9C855000A5471 /* TestUserListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUserListViewModel.swift; sourceTree = "<group>"; };
 		25984E8528C8A4DD0085C91A /* TestCoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCoreData.swift; sourceTree = "<group>"; };
 		25A0FF7228C4AA6100C91DA0 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		25A0FF7D28C4CE1400C91DA0 /* UserDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailViewModel.swift; sourceTree = "<group>"; };
@@ -223,9 +221,8 @@
 				25A5DB9128C62AF900DEC8BA /* MockURLSession.swift */,
 				25A5DB9328C6307000DEC8BA /* MockUserListViewModel.swift */,
 				25A5DB9528C6346000DEC8BA /* TestVCUserList.swift */,
-				25984E8128C88E8E0085C91A /* TestUserListModel.swift */,
-				25984E8328C893550085C91A /* TestUserProfileModdel.swift */,
 				25984E8528C8A4DD0085C91A /* TestCoreData.swift */,
+				2562CADF28C9C855000A5471 /* TestUserListViewModel.swift */,
 			);
 			path = TawkAssignmentTests;
 			sourceTree = "<group>";
@@ -470,11 +467,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				25984E8628C8A4DD0085C91A /* TestCoreData.swift in Sources */,
-				25984E8228C88E8E0085C91A /* TestUserListModel.swift in Sources */,
 				25A5DB9628C6346000DEC8BA /* TestVCUserList.swift in Sources */,
+				2562CAE028C9C855000A5471 /* TestUserListViewModel.swift in Sources */,
 				25A5DB9228C62AF900DEC8BA /* MockURLSession.swift in Sources */,
 				25A5DB9028C628E300DEC8BA /* URLSessionTest.swift in Sources */,
-				25984E8428C893550085C91A /* TestUserProfileModdel.swift in Sources */,
 				25BB9F9B28C1D11C003C160F /* TawkAssignmentTests.swift in Sources */,
 				25A5DB9428C6307000DEC8BA /* MockUserListViewModel.swift in Sources */,
 			);
